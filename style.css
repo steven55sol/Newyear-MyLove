@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:wght@400;700;900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 1.6rem;
+}
+
+:root{
+    --fuente-principal: 'Poppins', sans-serif;
+    --fuente-secundaria: 'Inter', sans-serif;
+}
+
+.fondo{
+    position: fixed;
+    background-color: bisque;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    z-index: -1;
+}
+
+
+.icon{
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  animation: bajar 4s linear forwards;
+  opacity: 0.8;
+  top: 0;
+}
+
+@keyframes bajar {
+  0% {
+    transform: translateY(0) scale(0.8) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) scale(1.5) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+header{
+  line-height: 4rem;
+}
+
+header h1, h3{
+    font-family: var(--fuente-principal);
+    font-weight: 900;
+    color: #f5a364;
+    -webkit-text-stroke-color: #f16464;
+    -webkit-text-stroke-width: 1px;
+}
+
+.sub-title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+}
+
+.countdown{
+    width: 100%;
+    min-height: 100vh;
+    text-align: center;
+    padding-top: 5rem;
+}
+
+@media screen and (min-width: 800px){
+
+    header{
+      line-height: 5rem;
+    }
+
+    header h1, h3{
+      font-size: 5rem;
+    }
+    .countdown{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;  
+        align-items: center;
+    }
+  
+}
+
+#countdown-timer{
+  margin-top: 2rem;
+}
+
+#countdown-timer p{
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  font-family: var(--fuente-principal);
+  font-weight: 900;
+  color: #242975;
+  -webkit-text-stroke-width: 1px;
+  font-size: 3rem;
+  margin: 1rem 1rem;
+
+  & span{
+    color: #f5a364;
+    -webkit-text-stroke-color: #d36c1c;
+    -webkit-text-stroke-width: 1px;
+  }
+}
+
+@media screen and (min-width: 800px){
+   #countdown-timer{
+      display: flex;
+      gap: 2rem;
+   }
+
+   #countdown-timer p{
+      font-size: 5rem;
+   }
+
+   #countdown-timer span{
+      font-size: 8rem;
+   }
+  
+}
+
+footer{
+    text-align: center;
+    padding: 2rem 1rem;
+    font-family: var(--fuente-secundaria);
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #fc764e;
+}
