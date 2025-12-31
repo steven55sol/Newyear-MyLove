@@ -1,30 +1,37 @@
 function startAnimation(){
     const $fondo = document.querySelector(".fondo");
-        
+    const start = document.querySelector(".start");
 
     const icon = document.createElement('img');    
     icon.src = "./assets/hoja1.png";
     icon.style.width = "30px";
     icon.classList.add("icon")
+
+    const heart = document.createElement('img');    
+    heart.src = "./assets/heart.svg";
+    heart.style.width = "30px";
+    heart.classList.add("icon")
     
     // posición aleatoria dentro del viewport
     const x = Math.round(Math.random() * window.innerWidth,2);
     icon.style.left = x + "px";
+    heart.style.left = x + "px";
 
 
     $fondo.appendChild(icon);
+    start.appendChild(heart);
 
     // eliminar cuando termine la animación
     icon.addEventListener("animationend", () => {
         icon.remove();
     });
 
+    heart.addEventListener("animationend", () => {
+        heart.remove(); 
+    });
+
 }
 
-startAnimation();
-
-// generar un corazón cada cierto tiempo
-setInterval(startAnimation, 400);
 
 function iniciarContadorFinDeAno() {
 
@@ -53,9 +60,20 @@ function iniciarContadorFinDeAno() {
     const diff = anoNuevo - ahoraLocal;
 
     if (diff <= 0) {
-      document.getElementById("countdown-timer").innerHTML =
-        "🎉 ¡Feliz Año Nuevo! 🎉";
-      return;
+      Eliminarstart("fondo");
+      startAnimation();
+
+      document.addEventListener("click", (e)=>{
+        if(e.target.matches(".heart3") || e.target.matches(".heart3 *")){
+          const mensaje = document.querySelector(".mensaje");
+          Eliminarstart("frase");
+          mensaje.style.display = "block";
+        }       
+      });
+      
+    }else{
+      Eliminarstart("start");
+      startAnimation();
     }
 
     const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -75,5 +93,16 @@ function iniciarContadorFinDeAno() {
   actualizar();
   setInterval(actualizar, 1000);
 }
+
+function Eliminarstart(clase){
+    const start = document.querySelector(`.${clase}`);
+    start.style.display = "none";
+}
+
+function MensajeFinDeAno(){
+    const frase = document.querySelector(".frase");
+    frase.style.display = "block";
+}
+
 
 iniciarContadorFinDeAno();

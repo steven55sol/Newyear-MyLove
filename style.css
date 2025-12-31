@@ -22,7 +22,7 @@ body{
     position: fixed;
     background-color: bisque;
     width: 100%;
-    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     justify-content: center;
     padding: 1rem;
@@ -73,7 +73,11 @@ header h1, h3{
     width: 100%;
     min-height: 100vh;
     text-align: center;
-    padding-top: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
 }
 
 @media screen and (min-width: 800px){
@@ -84,12 +88,6 @@ header h1, h3{
 
     header h1, h3{
       font-size: 5rem;
-    }
-    .countdown{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;  
-        align-items: center;
     }
   
 }
@@ -139,4 +137,129 @@ footer{
     font-weight: 700;
     font-size: 1.4rem;
     color: #fc764e;
+}
+
+/* Start section styles */
+.start{
+    position: fixed;
+    width: 100%;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+}
+
+.frase{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    font-weight: 900;
+    font-size: 5rem;
+}
+
+.frase span{
+    color: #e76262;
+    -webkit-text-stroke-color: #e92424;
+    -webkit-text-stroke-width: 1px;
+    font-size: 8rem;
+    opacity: 0;
+    animation: showletter 0.5s ease forwards;
+}
+
+.frase span:nth-child(1) { animation-delay: 3s; }
+.frase span:nth-child(2) { animation-delay: 3.1s; }
+.frase span:nth-child(3) { animation-delay: 3.2s; }
+.frase span:nth-child(4) { animation-delay: 3.3s; }
+.frase span:nth-child(5) { animation-delay: 3.4s; }
+
+@keyframes showletter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.heart3 {
+  fill: white;
+  cursor: pointer;
+  animation: move 5s linear forwards, pulse 1s ease infinite;
+}
+
+.heart3::after{
+  content: '';
+  background-color: red;
+}
+
+@keyframes move {
+  0%{
+    stroke-dasharray: 0, 100.8px;
+  }
+  50%{
+    stroke-dasharray: 100.8px, 100.8px;
+    fill: white;
+  }
+  100%{
+    stroke-dasharray: 100.8px, 100.8px;
+    fill: red;
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.heart3{
+    width: 8rem;
+}
+
+.start p{
+    font-family: var(--fuente-principal);
+    width:15pc;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #f16464;
+    margin-top: 2rem;
+    opacity: 0;
+    animation: pulse 6s ease infinite, show .5s ease forwards;
+    animation-delay: 4s;    
+}
+
+@keyframes show {
+  to{
+    opacity: 1;
+  }
+  from{
+    opacity: 0;
+  }
+}
+
+.mensaje{
+  display: none;
+  padding: 2rem;
+  font-size: 1.8rem;
+  font-family: var(--fuente-principal);
+
+  & p:nth-child(1){
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #f16464;
+  }
+}
+
+.mensaje p{
+  margin-bottom: 1rem;
+}
+
+.love{
+  display: block;
+  margin: 0 auto;
 }
