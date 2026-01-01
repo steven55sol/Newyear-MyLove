@@ -60,6 +60,9 @@ function iniciarContadorFinDeAno() {
     const diff = anoNuevo - ahoraLocal;
 
     if (diff <= 0) {
+      clearInterval(actualizar);
+      diff = 0;
+      
       Eliminarstart("fondo");
       startAnimation();
 
