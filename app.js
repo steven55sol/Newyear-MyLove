@@ -62,7 +62,13 @@ function iniciarContadorFinDeAno() {
     if (diff <= 0) {
       clearInterval(actualizar);
       diff = 0;
-      
+
+      document.getElementById("days").textContent = "00";
+      document.getElementById("hours").textContent = "00";
+      document.getElementById("minutes").textContent = "00";
+      document.getElementById("seconds").textContent = "00";
+
+
       Eliminarstart("fondo");
       startAnimation();
 
