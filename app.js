@@ -35,50 +35,45 @@ function startAnimation(){
 
 function iniciarContadorFinDeAno() {
 
-  function dosDigitos(n) {
-    return String(n).padStart(2, "0");
-  }
+    
+    function dosDigitos(n) {
+        return String(n).padStart(2, "0");
+    }
 
   const zona = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
+  // Fecha actual
   const ahora = new Date();
+
+  // Año nuevo en la zona del usuario
   const anoNuevo = new Date(
     ahora.toLocaleString("en-US", { timeZone: zona })
   );
-
   anoNuevo.setFullYear(anoNuevo.getFullYear() + 1, 0, 1);
   anoNuevo.setHours(0, 0, 0, 0);
 
-  let intervalo;
-
   function actualizar() {
     const ahoraLocal = new Date(
-      new Date().toLocaleString("en-US", { timeZone: zona })
+      new Date().toLocaleString("en-En", { timeZone: zona })
     );
 
-    let diff = anoNuevo - ahoraLocal;
+    const diff = 0;
 
-    // 🛑 Si ya llegó Año Nuevo
     if (diff <= 0) {
-      clearInterval(intervalo);
-      diff = 0;
-
-      document.getElementById("days").textContent = "00";
-      document.getElementById("hours").textContent = "00";
-      document.getElementById("minutes").textContent = "00";
-      document.getElementById("seconds").textContent = "00";
-
       Eliminarstart("fondo");
       startAnimation();
 
-      document.addEventListener("click", (e) => {
-        if (e.target.closest(".heart3")) {
+      document.addEventListener("click", (e)=>{
+        if(e.target.matches(".heart3") || e.target.matches(".heart3 *")){
+          const mensaje = document.querySelector(".mensaje");
           Eliminarstart("frase");
-          document.querySelector(".mensaje").style.display = "block";
-        }
+          mensaje.style.display = "block";
+        }       
       });
-
-      return;
+      
+    }else{
+      Eliminarstart("start");
+      startAnimation();
     }
 
     const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -86,14 +81,17 @@ function iniciarContadorFinDeAno() {
     const minutos = Math.floor((diff / (1000 * 60)) % 60);
     const segundos = Math.floor((diff / 1000) % 60);
 
+
+
     document.getElementById("days").textContent = dosDigitos(dias);
     document.getElementById("hours").textContent = dosDigitos(horas);
     document.getElementById("minutes").textContent = dosDigitos(minutos);
     document.getElementById("seconds").textContent = dosDigitos(segundos);
+
   }
 
   actualizar();
-  intervalo = setInterval(actualizar, 1000);
+  setInterval(actualizar, 1000);
 }
 
 function Eliminarstart(clase){
